@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("file:web/WEB-INF/applicationContext.xml")
 @Log4j
 public class BoardMapperTests {
-
     @Setter(onMethod_ = {@Autowired})
     private BoardMapper boardMapper;
 
@@ -39,4 +38,24 @@ public class BoardMapperTests {
         log.info("-----------------------");
         log.info(boardVO);
     }
+
+    @Test
+    public void testDelete(){
+        int count = boardMapper.delete(4L);
+
+        log.info("----------------");
+        log.info(count);
+    }
+
+    @Test
+    public void testUpdate(){
+        BoardVO boardVO = new BoardVO();
+        boardVO.setBno(5L);
+        boardVO.setTitle("update");
+        boardVO.setContext("update");
+
+        int count = boardMapper.update(boardVO);
+        log.info(count);
+    }
+
 }
