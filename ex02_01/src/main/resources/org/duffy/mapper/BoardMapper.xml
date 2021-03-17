@@ -8,4 +8,21 @@
         select * from tbl_board where bno>0 and ROWNUM>0 and ROWNUM <= 5
     ]]>
     </select>
+
+    <insert id="insert">
+        insert into tbl_board (bno, title, context, writer)
+        values (seq_board.nextval, #{title}, #{context}, #{writer})
+    </insert>
+
+    <insert id="insertSelectKey">
+        <selectKey keyProperty="bno" order="BEFORE" resultType="long">
+            select seq_board.nextval from dual
+        </selectKey>
+        insert into tbl_board (bno, title, context, writer)
+        values (#{bno}, #{title}, #{context}, #{writer})
+    </insert>
+
+    <select id="read" resultType="org.duffy.domain.BoardVO">
+        select * from tbl_board where bno = #{bno}
+    </select>
 </mapper>

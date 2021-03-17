@@ -2,6 +2,7 @@ package org.duffy.mapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import org.duffy.domain.BoardVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,23 @@ public class BoardMapperTests {
     @Test
     public void getList(){
         boardMapper.getList().forEach(log::info);
+    }
+
+    @Test
+    public void testInsert(){
+        BoardVO boardVO = new BoardVO();
+        boardVO.setTitle("TEST");
+        boardVO.setWriter("TESTER");
+        boardVO.setContext("TEST CONTEXT");
+
+        boardMapper.insertSelectKey(boardVO);
+        log.info(boardVO);
+    }
+
+    @Test
+    public void testRead(){
+        BoardVO boardVO = boardMapper.read(10L);
+        log.info("-----------------------");
+        log.info(boardVO);
     }
 }
