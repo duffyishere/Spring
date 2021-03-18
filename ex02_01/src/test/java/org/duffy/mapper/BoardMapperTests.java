@@ -34,17 +34,15 @@ public class BoardMapperTests {
 
     @Test
     public void testRead(){
-        BoardVO boardVO = boardMapper.read(10L);
+        BoardVO boardVO = boardMapper.read(4697L);
         log.info("-----------------------");
         log.info(boardVO);
     }
 
     @Test
     public void testDelete(){
-        int count = boardMapper.delete(4L);
-
-        log.info("----------------");
-        log.info(count);
+        int count = boardMapper.delete(100L);
+        log.info("DELETE COUNT: "+count);
     }
 
     @Test
