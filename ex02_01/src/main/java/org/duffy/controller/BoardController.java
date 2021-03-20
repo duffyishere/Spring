@@ -23,17 +23,43 @@ public class BoardController {
     private BoardService boardService;
 
 //    @RequestMapping(value = "/board/list", method = RequestMethod.GET)
-    @GetMapping("/board/list")
+    @GetMapping("/list")
     public void list(Model model){
         log.info("list.......");
         model.addAttribute("post", boardService.getPost(5L));
     }
 
-    @PostMapping("/board/register")
+    @GetMapping("/get")
+    public void get(Long bno, Model model){
+        log.info("get.......");
+        model.addAttribute("post", boardService.getPost(bno));
+    }
+
+    @PostMapping("/register")
     public String register(BoardVO boardVO, RedirectAttributes redirectAttributes){
         log.info("register............"+boardVO);
         boardService.register(boardVO);
         redirectAttributes.addFlashAttribute("result", boardVO.getBno());
         return "redirect:/board/list";
     }
+
+    @PostMapping("/modify")
+    public String modify(BoardVO boardVO, RedirectAttributes redirectAttributes){
+        log.info("modify.........."+boardVO);
+        if(boardService.modify(boardVO)){
+            redirectAttributes.addFlashAttribute("result", "success");
+        }
+        return "redirect:/board/list";
+    }
+
+    @PostMapping("/remove")
+    public String remove(Long bno, RedirectAttributes redirectAttributes){
+        log.info("remove......."+bno);
+        if(boardService.remove(bno)){
+            redirectAttributes.addFlashAttribute("result", "success");
+        }
+        return "redirect:/board/list";
+    }
+
+
 }
