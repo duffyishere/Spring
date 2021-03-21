@@ -21,5 +21,4 @@
 
     <mybatis-spring:scan base-package="org.duffy.mapper"/>
     <context:component-scan base-package="org.duffy.service"></context:component-scan>
-<!--    <mvc:annotation-driven />-->
 </beans>

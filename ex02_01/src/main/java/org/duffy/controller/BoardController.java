@@ -11,12 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Log4j
-@RequestMapping(value = "/board/*")
+@RequestMapping( "/board/*")
+@AllArgsConstructor
+//Error - 2021/03/21
+//Intellij에서 WEB-INF/views를 참조하지 않고 out폴더를 참조함
+//board/list를 접속해도 list.jsp를 연결해주지 않고 404Error, board/list.jsp로 해야먄 접속 가능
 public class BoardController {
 
     @Setter(onMethod_ = {@Autowired})
