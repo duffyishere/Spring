@@ -34,7 +34,7 @@ public class BoardServiceTests {
 	
 	//Error - 2021.3.27
 	//Null Point Exception
-	//org.duffy.serviceImpl에서 boardMapper를 빈을 생성하지 않았
+	//org.duffy.serviceImpl에서 boardMapper를 빈을 생성하지 않았음 
 	@Test
 	public void testRegister() {
 		BoardVO board = new BoardVO();
