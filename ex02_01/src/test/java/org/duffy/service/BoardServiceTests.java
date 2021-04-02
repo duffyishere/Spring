@@ -3,6 +3,7 @@ package org.duffy.service;
 import static org.junit.Assert.assertNotNull;
 
 import org.duffy.domain.BoardVO;
+import org.duffy.domain.Criteria;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,8 @@ public class BoardServiceTests {
 	
 	@Test
 	public void testGetListAll() {
-		boardService.getListAll().forEach(log::info);
+		Criteria cri = new Criteria();
+		boardService.getListAll(cri).forEach(log::info);
 	}
 	
 	@Test

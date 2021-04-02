@@ -1,6 +1,7 @@
 package org.duffy.mapper;
 
 import org.duffy.domain.BoardVO;
+import org.duffy.domain.Criteria;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,12 @@ public class BoardMapperTests {
 		board.setWriter("TEST");
 		
 		log.info("UPDATE COUNT :"+boardMapper.update(board));
+	}
+	
+	@Test
+	public void testGetListWithPaging() {
+		Criteria cir = new Criteria(3, 10);
+		
+		boardMapper.getListWithPaging(cir).forEach(log::info);
 	}
 }

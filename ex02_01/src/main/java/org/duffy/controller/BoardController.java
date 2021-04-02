@@ -1,6 +1,7 @@
 package org.duffy.controller;
 
 import org.duffy.domain.BoardVO;
+import org.duffy.domain.Criteria;
 import org.duffy.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,10 @@ public class BoardController {
 	private BoardService boardService; 
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public void list(Model model) {
+	public void list(Criteria cri, Model model) {
 		log.info("/list");
 		
-		model.addAttribute("list", boardService.getListAll());
+		model.addAttribute("list", boardService.getListAll(cri));
 	}
 	
 	@RequestMapping(value="/get", method = RequestMethod.GET)

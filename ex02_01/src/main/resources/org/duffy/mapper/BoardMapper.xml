@@ -3,7 +3,19 @@
 <mapper namespace="org.duffy.mapper.BoardMapper">
 <select id="getList" resultType="org.duffy.domain.BoardVO">
 	<![CDATA[
-	select * from tbl_board where bno>0 and ROWNUM>0 and ROWNUM <= 20
+		select * from tbl_board where bno>0 and ROWNUM>0 and ROWNUM <= 20 order by bno DESC
+	]]>
+</select>
+
+<select id="getListWithPaging" resultType="org.duffy.domain.BoardVO">
+	<![CDATA[
+		select bno, title, writer, regdate, updatedate
+		from (
+    		select /*+ index_desc(tbl_board pk_board) */ ROWNUM as rn, bno, title, writer, regdate, updatedate
+    		from tbl_board
+    		where ROWNUM<=#{pageNum} * #{amount})
+    		tbl_board
+		where rn>(#{pageNum} -1) * #{amount}
 	]]>
 </select>
 
