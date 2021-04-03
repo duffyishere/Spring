@@ -19,9 +19,11 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Modify</div>
 			<!-- /.panel-heading -->
-			<form role="form" action="/board/modify" method="POST">
 				<div class="panel-body">
+				<form role="form" action="/board/modify" method="POST">
 					<div class="form-group">
+						<input name='pageNum' value='<c:out value="${ cri.pageNum}"/>'>
+						<input name='amount' value='<c:out value="${ cri.amount}"/>'>
 						<div class="form-group col-md-6">
 						  <label>Bno</label>
 						  <input type="text" class="form-control" name="bno" value="<c:out value="${post.bno }"/>" readonly>
@@ -78,8 +80,16 @@ $(document).ready(function(){
 			formObj.attr("action", "/board/remove")
 		}
 		else if(operation === 'list'){
-			self.location="/board/list"
-			return;
+			formObj.attr("action", "/board/list").attr("method", "GET")
+			var pageNumTag = $("input[name='pageNum']").clone();
+			var amountTag = $("input[name='amount']").clone();
+
+			console.log(pageNumTag)
+			console.log(amountTag)
+
+			formObj.empty();
+			formObj.append(pageNumTag)
+			formObj.append(amountTag)
 		}
 		formObj.submit();
 	})

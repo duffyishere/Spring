@@ -7,6 +7,7 @@ import org.duffy.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -29,15 +30,16 @@ public class BoardController {
 		log.info("/list");
 		
 		model.addAttribute("list", boardService.getListAll(cri));
-		model.addAttribute("page", new PageDTO(cri, 1234));
+		model.addAttribute("page", new PageDTO(cri, 785));
 	}
 	
 	@RequestMapping(value="/get", method = RequestMethod.GET)
-	public void get(Long bno, Model model) {
+	public void get(Long bno, Criteria cri, Model model) {
 		log.info("/get?bno="+bno);
 		
 		
 		model.addAttribute("post", boardService.getList(bno));
+		model.addAttribute("cri", cri);
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
@@ -57,19 +59,23 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/modify", method = RequestMethod.POST)
-	public String modify(BoardVO board, RedirectAttributes rttr) {
+	public String modify(BoardVO board, @ModelAttribute("cri")Criteria cri, Model model, RedirectAttributes rttr) {
 		log.info("modify complete "+board.getBno());
-		
+				
 		if(boardService.modify(board))
 			rttr.addFlashAttribute("result", "success");
+		
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
 			
 		return "redirect:/board/list";
 	}
 	
 	@RequestMapping(value="/modify", method = RequestMethod.GET)
-	public void modify(Long bno, Model model) {
+	public void modify(Long bno, Criteria cri, Model model) {
 		log.info("/modify?bno="+bno);
 		model.addAttribute("post", boardService.getList(bno));
+		model.addAttribute("cri", cri);
 	}
 	
 	@RequestMapping(value="/remove", method = RequestMethod.POST)

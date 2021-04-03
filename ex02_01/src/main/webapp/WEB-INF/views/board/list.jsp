@@ -50,7 +50,7 @@
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
 						<c:if test="${page.prev }">
-							<li class="page-item paginate_button"><a class="page-link" href="${page.startPage -1}"
+							<li class="page-item paginate_button"><a class="page-link" href="#"
 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 							</a></li>
 						</c:if>
@@ -59,7 +59,7 @@
 							<li class="page-item paginate_button ${page.cri.pageNum == num? 'active':'' }"><a class="page-link" href="${num }">${num }</a></li>
 						</c:forEach>
 						<c:if test="${page.next }">
-							<li class="page-item paginate_button"><a class="page-link" href="${page.endPage +1}"
+							<li class="page-item paginate_button"><a class="page-link" href="#"
 								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 							</a></li>
 						</c:if>
@@ -134,6 +134,14 @@
 					console.log("click");
 
 					actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+					actionForm.submit();
+				})	
+
+				$(".move").on("click", function(e){
+					e.preventDefault();
+
+					actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
+					actionForm.attr("action", "/board/get");
 					actionForm.submit();
 				})
 

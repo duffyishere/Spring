@@ -23,25 +23,25 @@
 			<div class="panel-body">
 				<div class="form-group">
 					<div class="form-group col-md-6">
-					  <label for="inputEmail4">Bno</label>
-					  <input type="text" class="form-control" name="bno" value="<c:out value="${post.bno }"/>" readonly>
+						<label for="inputPassword4">RegDate</label>
+						<input type="text" class="form-control" name="writer" value='<fmt:formatDate pattern="yyyy-MM-dd" value="${post.regDate }"/>' readonly>
 					</div>
 					<div class="form-group col-md-6">
-					  <label for="inputPassword4">Writer</label>
-					  <input type="text" class="form-control" name="writer" value="<c:out value="${post.writer }"/>" readonly>
+					  <label for="inputEmail4">UpdateDate</label>
+					  <input type="text" class="form-control" name="bno" value='<fmt:formatDate pattern="yyyy-MM-dd" value="${post.updateDate}"/>'  readonly>
 					</div>
 				  </div>
+				  <div class="form-group">
+					<label for="exampleFormControlInput1">Bno</label> 
+					<input type="text" class="form-control" id="exampleFormControlInput1" name="title" value='<c:out value="${post.bno }"/>' readonly/>
+				</div>
 				<div class="form-group">
 					<label for="exampleFormControlInput1">Title</label> 
 					<input type="text" class="form-control" id="exampleFormControlInput1" name="title" value='<c:out value="${post.title }"/>' readonly/>
 				</div>
 				<div class="form-group">
-					<label for="exampleFormControlInput1">RegDate</label> 
-					<input type="text" class="form-control" id="exampleFormControlInput1" name="title" value='<fmt:formatDate pattern="yyyy-MM-dd" value="${post.regDate }"/>' readonly/>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlInput1">UpdateDate</label> 
-					<input type="text" class="form-control" id="exampleFormControlInput1" name="title" value='<fmt:formatDate pattern="yyyy-MM-dd" value="${post.updateDate}"/> 'readonly/>
+					<label for="exampleFormControlInput1">Writer</label> 
+					<input type="text" class="form-control" id="exampleFormControlInput1" name="title" value='<c:out value="${post.writer }"/>' readonly/>
 				</div>
 				<div class="form-group">
 					<label for="exampleFormControlTextarea1">Context</label>
@@ -66,11 +66,11 @@
 $(document).ready(function(){
 
     $("#list").on("click", function(){
-      self.location="/board/list"
+      self.location="/board/list?pageNum="+<c:out value="${cri.pageNum}"/>+"&amount="+<c:out value="${cri.amount}"/>
     })
 
 	$("#modify").on("click", function(){
-      self.location="/board/modify?bno="+<c:out value="${post.bno }"/>
+      self.location="/board/modify?bno="+<c:out value="${post.bno }"/>+"&pageNum="+<c:out value="${cri.pageNum}"/>+"&amount="+<c:out value="${cri.amount}"/>
     })
 
 	// $("#remove").on("click", function(){
