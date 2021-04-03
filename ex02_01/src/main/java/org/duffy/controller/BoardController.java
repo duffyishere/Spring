@@ -2,6 +2,7 @@ package org.duffy.controller;
 
 import org.duffy.domain.BoardVO;
 import org.duffy.domain.Criteria;
+import org.duffy.domain.PageDTO;
 import org.duffy.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class BoardController {
 		log.info("/list");
 		
 		model.addAttribute("list", boardService.getListAll(cri));
+		model.addAttribute("page", new PageDTO(cri, 1234));
 	}
 	
 	@RequestMapping(value="/get", method = RequestMethod.GET)
