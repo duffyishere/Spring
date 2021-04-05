@@ -1,5 +1,9 @@
 package org.duffy.mapper;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.duffy.domain.BoardVO;
 import org.duffy.domain.Criteria;
 import org.junit.Test;
@@ -60,8 +64,33 @@ public class BoardMapperTests {
 	
 	@Test
 	public void testGetListWithPaging() {
-		Criteria cir = new Criteria(3, 10);
+		Criteria cri = new Criteria(3, 10);
+		cri.setType("TC");
+		cri.setKeyWord("Test");
+		boardMapper.getListWithPaging(cri).forEach(log::info);
+	}
+	
+	@Test
+	public void testGetTotalCount() {
+		Criteria cri = new Criteria(1, 10);
+		cri.setType("TC");
+		cri.setKeyWord("Test");
 		
-		boardMapper.getListWithPaging(cir).forEach(log::info);
+		log.info(boardMapper.getTotalCount(cri));
+	}
+	
+	@Test
+	public void searchTest() {
+		Map<String, String> map = new HashMap<>();
+		map.put("T", "Test");
+		map.put("C", "CCC");
+		map.put("W", "WWW");
+
+		
+		Map<String, Map<String, String>> outer = new HashMap<>();
+		outer.put("map", map);
+		
+		List<BoardVO> list= boardMapper.searchTest(outer);
+		log.info(list);
 	}
 }

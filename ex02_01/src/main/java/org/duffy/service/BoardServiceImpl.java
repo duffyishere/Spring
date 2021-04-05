@@ -56,5 +56,12 @@ public class BoardServiceImpl implements BoardService{
 		return boardMapper.update(board)==1;
 	}
 
+	@Override
+	public int getTotal(Criteria cri) {
+		log.info("get total count.......");
+		
+		return boardMapper.getTotalCount(cri);
+	}
+
 
 }

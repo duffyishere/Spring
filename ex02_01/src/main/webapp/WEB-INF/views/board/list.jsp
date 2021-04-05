@@ -47,10 +47,31 @@
 					</c:forEach>
 				</table>
 
-				<nav aria-label="Page navigation example">
+				<div class="row">
+					<div class="col-lg-12">
+						<form id="search-form" action="/board/list" method="GET">
+							<select class="selectpicker" name="type">
+							  <optgroup label="Searching Option">
+								<option value="" <c:out value='${page.cri.type eq null? "selected": ""}'/> >--</option>
+								<option value="T" <c:out value='${page.cri.type eq "T"? "selected": ""}'/> >Title</option>
+								<option value="W" <c:out value='${page.cri.type eq "W"? "selected": ""}'/> >Writer</option>
+								<option value="C" <c:out value='${page.cri.type eq "C"? "selected": ""}'/> >Context</option>
+								<option value="TW" <c:out value='${page.cri.type eq "TW"? "selected": ""}'/> >Title or Writer</option>
+								<option value="TC" <c:out value='${page.cri.type eq "TC"? "selected": ""}'/> >Title or Context</option>
+								<option value="TCW" <c:out value='${page.cri.type eq "TCW"? "selected": ""}'/> >Title or Writer or Context</option>
+							  </select>
+							  <input type="text" name="keyWord"value="${page.cri.keyWord }" placeholder="Please enter a search term." style="width: 300px;">
+							  <input type="hidden" name="pageNum" value="${page.cri.pageNum }">
+							  <input type="hidden" name="amount" value="${page.cri.amount }">
+							  <button type="button" class="btn btn-primary">Search</button>
+						</form>
+					</div>
+				</div>
+
+				<nav aria-label="Page navigation example" class="center">
 					<ul class="pagination">
 						<c:if test="${page.prev }">
-							<li class="page-item paginate_button"><a class="page-link" href="#"
+							<li class="page-item paginate_button"><a class="page-link" href="${page.startPage-1 }"
 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 							</a></li>
 						</c:if>
@@ -59,7 +80,7 @@
 							<li class="page-item paginate_button ${page.cri.pageNum == num? 'active':'' }"><a class="page-link" href="${num }">${num }</a></li>
 						</c:forEach>
 						<c:if test="${page.next }">
-							<li class="page-item paginate_button"><a class="page-link" href="#"
+							<li class="page-item paginate_button"><a class="page-link" href="${page.endPage+1 }"
 								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 							</a></li>
 						</c:if>
@@ -76,6 +97,9 @@
 <form id="actionform" action="/board/list" method="get">
 	<input type="hidden" name="pageNum" value="${page.cri.pageNum }">
 	<input type="hidden" name="amount" value="${page.cri.amount }">
+	<input type="hidden" name="type" value="${page.cri.type }">
+	<input type="hidden" name="keyWord" value="${page.cri.keyWord }">
+	
 </form>
 <div class="modal" id="myModal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
@@ -111,7 +135,7 @@
 				history.replaceState({}, null, null);
 
 				var actionForm = $("#actionform");
-				
+				var searchForm = $("#search-form")
 
 				function checkModal(result) {
 					if (result == '' || history.state) {
@@ -145,5 +169,22 @@
 					actionForm.submit();
 				})
 
+				$("#search-form button").on('click', function(e){
+					e.preventDefault();
+
+					if(!searchForm.find("option:selected").val()){
+						alert("검색종류를 선택하세요. ")
+						return false;
+					}
+
+					if(!searchForm.find("input[name='keyWord']").val()){
+						alert("검색어를 입력하세요. ")
+						return false;
+					}
+
+					searchForm.find("input[name='pageNum']").val("1");
+					
+					searchForm.submit();
+				})
 			})
 </script>

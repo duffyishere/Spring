@@ -28,9 +28,12 @@ public class BoardController {
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public void list(Criteria cri, Model model) {
 		log.info("/list");
+
+		int totalCount = boardService.getTotal(cri);
+		log.info("get total "+totalCount);
 		
 		model.addAttribute("list", boardService.getListAll(cri));
-		model.addAttribute("page", new PageDTO(cri, 785));
+		model.addAttribute("page", new PageDTO(cri, totalCount));
 	}
 	
 	@RequestMapping(value="/get", method = RequestMethod.GET)

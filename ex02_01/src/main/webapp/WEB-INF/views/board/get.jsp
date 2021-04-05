@@ -45,7 +45,7 @@
 				</div>
 				<div class="form-group">
 					<label for="exampleFormControlTextarea1">Context</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" name="context"' rows="3" readonly><c:out value="${post.context }"/></textarea>
+					<textarea class="form-control" id="exampleFormControlTextarea1" name="context" rows="3" readonly><c:out value="${post.context }"/></textarea>
 				  </div> 
 				
 

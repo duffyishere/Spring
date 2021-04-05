@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.duffy.mapper.BoardMapper">
+
+<sql id="criteria">
+    <trim prefix="(" suffix=") and">
+    <foreach collection="typeArr" item="type" separator="or">
+    	<if test="type == 'T'.toString()">
+    		title like '%'||#{keyWord}||'%'
+    	</if>
+    	<if test="type == 'C'.toString()">
+    		context like '%'||#{keyWord}||'%'
+    	</if>
+		<if test="type == 'W'.toString()">
+    		writer like '%'||#{keyWord}||'%'
+    	</if>
+    </foreach> 	
+    </trim>	
+</sql>
+
 <select id="getList" resultType="org.duffy.domain.BoardVO">
 	<![CDATA[
 		select * from tbl_board where bno>0 and ROWNUM>0 and ROWNUM <= 20 order by bno DESC
@@ -13,7 +30,13 @@
 		from (
     		select /*+ index_desc(tbl_board pk_board) */ ROWNUM as rn, bno, title, writer, regdate, updatedate
     		from tbl_board
-    		where ROWNUM<=#{pageNum} * #{amount})
+    		where 	
+    ]]>
+    		
+    <include refid="criteria"></include>
+    		
+    <![CDATA[
+    		bno>0 and ROWNUM>0 and ROWNUM<=#{pageNum} * #{amount})
     		tbl_board
 		where rn>(#{pageNum} -1) * #{amount}
 	]]>
@@ -45,4 +68,40 @@
 	updateDate=sysdate
 	where bno = #{bno}
 </update>
+
+<select id="getTotalCount" resultType="int">
+	<![CDATA[
+	select count(*) from tbl_board where]]>
+	
+	<include refid="criteria"></include>
+	
+	<![CDATA[
+	 bno>0
+	]]>
+</select>
+
+<select id="searchTest" resultType="org.duffy.domain.BoardVO">
+	<![CDATA[
+	select * from tbl_board where
+	]]>
+	
+	<trim prefix="(" suffix=") and">
+	<foreach collection="map" index="key" item="val" separator="or">
+		<if test="key == 'T'.toString() ">
+			title like '%'||#{val}||'%'
+		</if>
+		<if test="key == 'C'.toString() ">
+			context like '%'||#{val}||'%'
+		</if>
+		<if test="key == 'W'.toString() ">
+			writer like '%'||#{val}||'%'
+		</if>
+	</foreach>
+	</trim>
+	
+	<![CDATA[
+	rownum<=10
+	]]>
+</select>
+
 </mapper>

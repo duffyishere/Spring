@@ -4,9 +4,11 @@ import lombok.Data;
 
 @Data
 public class Criteria {
-	
 	private int pageNum;
 	private int amount;
+	
+	private String type;
+	private String keyWord;
 	
 	public Criteria() {
 		this.pageNum = 1;
@@ -18,4 +20,7 @@ public class Criteria {
 		this.amount = amount;
 	}
 	
+	public String[] getTypeArr() {		
+		return type==null? new String[] {} : type.split("");
+	}
 }
