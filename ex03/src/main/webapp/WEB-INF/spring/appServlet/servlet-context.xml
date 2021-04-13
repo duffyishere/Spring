@@ -22,7 +22,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="org.duffy.controller" />
-	
-	
+	<context:annotation-config />
 	
 </beans:beans>
