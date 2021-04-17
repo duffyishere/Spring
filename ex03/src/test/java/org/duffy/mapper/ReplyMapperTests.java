@@ -1,7 +1,9 @@
 package org.duffy.mapper;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
+import org.duffy.domain.Criteria;
 import org.duffy.domain.ReplyVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -61,6 +63,16 @@ public class ReplyMapperTests {
 		vo.setReply("Update Reply");
 		
 		log.info("Count :"+replyMapper.update(vo));
+	}
+	
+	@Test
+	public void testGetList() {
+		
+		Criteria cri = new Criteria();
+		
+		List<ReplyVO> list = replyMapper.getListWithPaging(cri, 5544L);
+		
+		list.forEach(log::info);
 	}
 	
 }

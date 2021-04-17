@@ -9,57 +9,58 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Service
 @Log4j
 @AllArgsConstructor
+@NoArgsConstructor
 public class BoardServiceImpl implements BoardService{
 
 	@Autowired
 	private BoardMapper boardMapper;
 	
-	public BoardServiceImpl() {}
 	
 	@Override
 	public List<BoardVO> getListAll(Criteria cri) {
+		
 		log.info("get List........"+cri);
 		return boardMapper.getListWithPaging(cri);
 	}
 	
 	@Override
 	public void register(BoardVO board) {
-		log.info("register........."+board);
 		
+		log.info("register........."+board);
 		boardMapper.insertSelectKey(board);
 	}
 
 
 	@Override
 	public BoardVO getList(Long bno) {
-		log.info("getList........"+bno);
 		
+		log.info("getList........"+bno);
 		return boardMapper.read(bno);
 	}
 
 	@Override
 	public boolean remove(Long bno) {
 		log.info("remove......."+bno);
-		
 		return boardMapper.delete(bno)==1;
 	}
 
 	@Override
 	public boolean modify(BoardVO board) {
-		log.info("modify......."+board);
 		
+		log.info("modify......."+board);
 		return boardMapper.update(board)==1;
 	}
 
 	@Override
 	public int getTotal(Criteria cri) {
-		log.info("get total count.......");
 		
+		log.info("get total count.......");
 		return boardMapper.getTotalCount(cri);
 	}
 

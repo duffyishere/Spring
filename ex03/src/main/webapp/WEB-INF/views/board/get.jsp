@@ -61,8 +61,25 @@
 
 <%@ include file="/includes/footer.jsp"%>
 
-<script type="text/javascript">
 
+<script src="/resources/js/reply.js"></script>
+
+<script>
+	console.log("================")
+	console.log("JS TEST")
+
+	var bnoValue = <c:out value="${post.bno}"/>
+
+	replyService.add(
+		{reply:"JS TEST", replyer:"tester", bno:bnoValue}
+		,
+		function(result){
+			alert("RESULT :" + result)
+		}
+);
+	
+</script>
+<script type="text/javascript">
 $(document).ready(function(){
 
     $("#list").on("click", function(){
@@ -76,5 +93,6 @@ $(document).ready(function(){
 	// $("#remove").on("click", function(){
     //   self.location="/board/remove?bno="+<c:out value="${post.bno }"/>
     // })
+
 })
 </script>
