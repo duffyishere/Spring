@@ -51,10 +51,36 @@
 
 				  <button type="button" id="list" class="btn btn-outline-secondary">List</button>	
 				  <button type="button" id="modify" class="btn btn-primary">Modify</button>
+
+
 			</div>
-			<!-- /.panel-body -->
-		</div>
+
+	</div>
 		<!-- /.panel -->
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<i class="fa fa-comments fa-fw"></i> Reply
+				</div>
+				<div class="panel-body">
+					<ul class="chat">
+						<li class="left clearfix" data-rno='12'>
+							<div>
+								<div class="header">
+									<strong class="primary-font">user-00</strong>
+									<small class="pull-right text-muted">2021-04-18</small>
+								</div>
+								<p>Looks Good!</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -65,30 +91,58 @@
 <script src="/resources/js/reply.js"></script>
 
 <script>
-	console.log("================")
-	console.log("JS TEST")
+	$(document).ready(function (){
 
+		var bnoValue = '<c:out value="${post.bno}"/>';
+		var replyUL = $(".chat");
+
+		showList(1);
+
+		function showList(page){
+
+			replyService.getList({bno:bnoValue, page:page||1}, function(list){
+				var str="";
+				if(list == null || list.length == 0){
+					replyUL.html("");
+
+					return;
+				}
+				for(var i=0, len = list.length; i<len || 0; i++){
+						str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>"
+						str += "<div> <div class='header'> <strong class='primary-font'>"+list[i].replyer+"</strong>"
+						str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>"
+						str += "<p>"+list[i].reply+"</p> </div> </li>"
+					}
+
+				replyUL.html(str);
+
+				})
+		}
+
+	})
+</script>
+<script>
 	var bnoValue = <c:out value="${post.bno}"/>
 
-	// replyService.modify({rno:25, bno:bnoValue, reply:"Modify Reply"},
-	// 	function(result){
-	// 		alert("Modified");
-	// })
+<%--	 replyService.modify({rno:25, bno:bnoValue, reply:"Modify Reply"},--%>
+<%--	 	function(result){--%>
+<%--	 		alert("Modified");--%>
+<%--	 })--%>
 
-	// replyService.remove(21, function(count){
-		
-	// 	console.log(count);
+<%--	 replyService.remove(21, function(count){--%>
 
-	// 	if(count === "success"){
-	// 		alert("REMOVED")
-	// 	}
-	// },function(err){
-	// 	alert("ERROR")
-	// })
+<%--	 	console.log(count);--%>
 
-	replyService.get(3, function(data){
-		console.log(data);
-	})
+<%--	 	if(count === "success"){--%>
+<%--	 		alert("REMOVED")--%>
+<%--	 	}--%>
+<%--	 },function(err){--%>
+<%--	 	alert("ERROR")--%>
+<%--	 })--%>
+
+<%--	replyService.get(3, function(data){--%>
+<%--		console.log(data);--%>
+<%--	})--%>
 	
 <%--	 replyService.getList({bno:bnoValue, page:1}, function(list){--%>
 <%--		for(var i=0, len = list.length || 0; i<len; i++){--%>
@@ -96,13 +150,13 @@
 <%--	 	}--%>
 <%--	 }) --%>
 
-/* 	replyService.add(
-		{reply:"JS TEST", replyer:"tester", bno:bnoValue}
-		,
-		function(result){
-			alert("RESULT :" + result)
-		}
-	) */
+<%-- 	replyService.add(--%>
+<%--		{reply:"JS TEST", replyer:"tester", bno:bnoValue}--%>
+<%--		,--%>
+<%--		function(result){--%>
+<%--			alert("RESULT :" + result)--%>
+<%--		}--%>
+<%--	) --%>
 	
 </script>
 <script type="text/javascript">
