@@ -70,13 +70,39 @@
 
 	var bnoValue = <c:out value="${post.bno}"/>
 
-	replyService.add(
+	// replyService.modify({rno:25, bno:bnoValue, reply:"Modify Reply"},
+	// 	function(result){
+	// 		alert("Modified");
+	// })
+
+	// replyService.remove(21, function(count){
+		
+	// 	console.log(count);
+
+	// 	if(count === "success"){
+	// 		alert("REMOVED")
+	// 	}
+	// },function(err){
+	// 	alert("ERROR")
+	// })
+
+	replyService.get(3, function(data){
+		console.log(data);
+	})
+	
+<%--	 replyService.getList({bno:bnoValue, page:1}, function(list){--%>
+<%--		for(var i=0, len = list.length || 0; i<len; i++){--%>
+<%--			console.log(list[i]);--%>
+<%--	 	}--%>
+<%--	 }) --%>
+
+/* 	replyService.add(
 		{reply:"JS TEST", replyer:"tester", bno:bnoValue}
 		,
 		function(result){
 			alert("RESULT :" + result)
 		}
-);
+	) */
 	
 </script>
 <script type="text/javascript">

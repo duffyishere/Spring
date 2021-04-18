@@ -19,6 +19,6 @@
 	</update>
 	
 	<select id="getListWithPaging" resultType="org.duffy.domain.ReplyVO">
-		select rno, bno, reply, replyer, replyDate,updateDate from tbl_reply where bno = #{bno}
+		select * from tbl_reply where bno = #{bno}
 	</select>
 </mapper>
