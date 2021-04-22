@@ -22,15 +22,15 @@
 				<div class="panel-body">
 				<form role="form" action="/board/modify" method="POST">
 					<div class="form-group">
-						<input name='pageNum' value='<c:out value="${ cri.pageNum}"/>'>
-						<input name='amount' value='<c:out value="${ cri.amount}"/>'>
+						<input type="hidden" name='pageNum' value='<c:out value="${ cri.pageNum}"/>'>
+						<input type="hidden" name='amount' value='<c:out value="${ cri.amount}"/>'>
 						<div class="form-group col-md-6">
 						  <label>Bno</label>
 						  <input type="text" class="form-control" name="bno" value="<c:out value="${post.bno }"/>" readonly>
 						</div>
 						<div class="form-group col-md-6">
 						  <label for="inputPassword4">Writer</label>
-						  <input type="text" class="form-control" name="writer" value="<c:out value="${post.writer }"/>" readonly>
+						  <input type="hidd" class="form-control" name="writer" value="<c:out value="${post.writer }"/>" readonly>
 						</div>
 					  </div>
 					<div class="form-group">

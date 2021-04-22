@@ -188,6 +188,49 @@
 			});
 		});
 
+		$(".chat").on("click", "li", function (e){
+
+			var rno = $(this).data("rno");
+
+			replyService.get(rno, function (result){
+				modalInputReply.val(result.reply);
+				modalInputReplyer.val(result.replyer).attr("readonly", "readonly");
+				modalInputReplyDate.val(replyService.displayTime(result.replyDate)).attr("readonly", "readonly")
+				modal.data("rno", result.rno)
+
+				modal.find("button[id != 'modalCloseBtn']").hide();
+				modalModifyBtn.show();
+				modalRemoveBtn.show();
+
+				$(".modal").modal("show");
+			})
+
+			// console.log(rno);
+
+			modalModifyBtn.on("click", function (e){
+
+				var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
+
+				replyService.update(reply, function (result){
+
+					alert(result)
+					modal.modal('hide')
+					showList(1);
+				})
+			})
+
+			modalRemoveBtn.on("click", function (e){
+				var rno = modal.data("rno");
+
+				replyService.remove(rno, function (result){
+
+					alert(result)
+					modal.modal('hide')
+					showList(1);
+				})
+			})
+		})
+
 	});
 </script>
 <script>
