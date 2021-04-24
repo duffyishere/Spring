@@ -3,6 +3,7 @@ package org.duffy.controller;
 import java.util.List;
 
 import org.duffy.domain.Criteria;
+import org.duffy.domain.ReplyPageDTO;
 import org.duffy.domain.ReplyVO;
 import org.duffy.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,14 +44,14 @@ public class ReplyController {
 	}
 	
 	@GetMapping(value="/pages/{bno}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<ReplyVO>> getList(@PathVariable("bno") Long bno, @PathVariable("page") int page){
+	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("bno") Long bno, @PathVariable("page") int page){
 		
 		log.info("get List"+bno);
 		
 		Criteria cri = new Criteria(page, 10);
 		log.info("cri :"+cri);
 		
-		return new ResponseEntity<List<ReplyVO>>(replyService.getList(cri, bno), HttpStatus.OK);
+		return new ResponseEntity<ReplyPageDTO>(replyService.getListPage(cri, bno), HttpStatus.OK);
 	}
 	
 	

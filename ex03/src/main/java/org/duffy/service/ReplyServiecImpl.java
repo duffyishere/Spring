@@ -3,6 +3,7 @@ package org.duffy.service;
 import java.util.List;
 
 import org.duffy.domain.Criteria;
+import org.duffy.domain.ReplyPageDTO;
 import org.duffy.domain.ReplyVO;
 import org.duffy.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,13 @@ public class ReplyServiecImpl implements ReplyService{
 		
 		log.info("getList........."+bno);
 		return replyMapper.getListWithPaging(cri, bno);
+	}
+
+	@Override
+	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
+		
+		log.info("getListPage........."+bno);
+		return new ReplyPageDTO(replyMapper.getCountByBno(bno), replyMapper.getListWithPaging(cri, bno));
 	}
 	
 }

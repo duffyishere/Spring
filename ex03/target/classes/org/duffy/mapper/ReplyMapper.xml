@@ -19,6 +19,16 @@
 	</update>
 	
 	<select id="getListWithPaging" resultType="org.duffy.domain.ReplyVO">
-		select * from tbl_reply where bno = #{bno}
+	<![CDATA[
+		select rno, bno, reply, replyer, replydate, updatedate from(
+   			select /*+ index(tbl_reply index_reply) */ ROWNUM rn, rno, bno, reply, replyer, replyDate, updateDate
+    		from tbl_reply
+    		where bno = 5545 and rno>0 and ROWNUM<=#{cri.pageNum} * #{cri.amount}
+                 )where rn>(#{cri.pageNum}-1) * #{cri.amount}
+]]>
+	</select>
+	
+	<select id="getCountByBno" resultType="int">
+		select count(rno) from tbl_reply where bno = #{bno}
 	</select>
 </mapper>

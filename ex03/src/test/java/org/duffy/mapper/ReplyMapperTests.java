@@ -68,7 +68,7 @@ public class ReplyMapperTests {
 	@Test
 	public void testGetList() {
 		
-		Criteria cri = new Criteria();
+		Criteria cri = new Criteria(2, 2);
 		
 		List<ReplyVO> list = replyMapper.getListWithPaging(cri, 5544L);
 		
