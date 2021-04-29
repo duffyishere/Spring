@@ -25,10 +25,8 @@ public class SampleServiceTests {
 	
 	@Test
 	public void testAdd() throws Exception {
-		log.info(sampleService.doAdd("aaa", "12"));
+		log.info(sampleService.doAdd("12", "3"));
 	}
-	
-	
 	
 	
 }
