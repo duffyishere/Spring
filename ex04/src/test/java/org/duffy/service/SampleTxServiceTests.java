@@ -1,6 +1,5 @@
 package org.duffy.service;
 
-import org.duffy.mapper.Sample2Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,24 +10,22 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@Log4j
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class SampleServiceTests {
-
+@Log4j
+public class SampleTxServiceTests {
 
 	@Setter(onMethod_ = @Autowired)
-	private SampleService sampleService;
+	private SampleTxService sampleTxService;
 	
 	@Test
-	public void test() {
-		log.info(sampleService);
-		log.info(sampleService.getClass().getName());
+	public void testLong() {
+		String str = "Starry, starry night\n"
+				+ "Paint your palette blue and gray\n"
+				+ "Look out on a summer's day";
+		
+		log.info(str.getBytes().length);
+		
+		sampleTxService.addData(str);
 	}
-	
-	@Test
-	public void testAdd() throws Exception {
-		log.info(sampleService.doAdd("12", "3"));
-	}
-	
 	
 }
