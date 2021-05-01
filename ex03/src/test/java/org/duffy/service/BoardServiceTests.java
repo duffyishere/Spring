@@ -57,8 +57,9 @@ public class BoardServiceTests {
 	
 	@Test
 	public void testGetList() {
-		boardService.getList(22L);
+		boardService.getList(5563L);
 	}
+	
 	
 	@Test
 	public void testRemove() {

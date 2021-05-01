@@ -3,6 +3,7 @@ package org.duffy.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.duffy.domain.BoardVO;
 import org.duffy.domain.Criteria;
 
@@ -16,4 +17,5 @@ public interface BoardMapper {
 	public int update(BoardVO board);
 	public int getTotalCount(Criteria cri); 
 	public List<BoardVO> searchTest(Map<String, Map<String, String>> map);
+	public void updateReplyCnt(@Param("bno") Long bno, @Param("amount") int amount);
 }

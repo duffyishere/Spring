@@ -5,6 +5,7 @@ import java.util.List;
 import org.duffy.domain.BoardVO;
 import org.duffy.domain.Criteria;
 import org.duffy.mapper.BoardMapper;
+import org.duffy.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,7 @@ public class BoardServiceImpl implements BoardService{
 	public void register(BoardVO board) {
 		
 		log.info("register........."+board);
+		
 		boardMapper.insertSelectKey(board);
 	}
 
