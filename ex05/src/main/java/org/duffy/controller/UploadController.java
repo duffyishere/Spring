@@ -40,8 +40,36 @@ public class UploadController {
 				log.error(e.getMessage());
 			}//end catch
 			
-		}//end for
+		}//end for	
+	}
+	
+	@GetMapping("/uploadAjax")
+	public void uploadAjax() {
 		
+		log.info("upload ajax");
+	}
+	
+	@PostMapping("/uploadAjaxAction")
+	public void uploadAjaxActionPost(MultipartFile[] uploadFiles) {
+		
+		String uploadFolder = "/Users/zzun_ho9/upload";
+
+		
+		for(MultipartFile file : uploadFiles) {
+			
+			log.info("--------------------------------");
+			log.info("Upload file name :"+file.getOriginalFilename());
+			log.info("Upload file size :"+file.getSize());
+			
+			File saveFile = new File(uploadFolder, file.getOriginalFilename());
+			
+			try {
+				file.transferTo(saveFile);
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}//end catch
+			
+		}//end for	
 	}
 	
 }
