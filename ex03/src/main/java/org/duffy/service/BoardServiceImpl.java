@@ -8,9 +8,11 @@ import org.duffy.mapper.BoardMapper;
 import org.duffy.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service
@@ -19,9 +21,11 @@ import lombok.extern.log4j.Log4j;
 @NoArgsConstructor
 public class BoardServiceImpl implements BoardService{
 
-	@Autowired
+	@Setter(onMethod_ = @Autowired)
 	private BoardMapper boardMapper;
 	
+	@Setter(onMethod_ = @Autowired)
+	private ReplyMapper replyMapper;
 	
 	@Override
 	public List<BoardVO> getListAll(Criteria cri) {
@@ -46,9 +50,13 @@ public class BoardServiceImpl implements BoardService{
 		return boardMapper.read(bno);
 	}
 
+	@Transactional
 	@Override
 	public boolean remove(Long bno) {
 		log.info("remove......."+bno);
+		
+		replyMapper.deleteByBno(bno);
+		
 		return boardMapper.delete(bno)==1;
 	}
 

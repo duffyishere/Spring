@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.duffy.mapper.ReplyMapper">
+
 	<insert id="insert">
 		insert into tbl_reply(rno, bno, reply, replyer) 
 		values (seq_reply.nextval, #{bno}, #{reply}, #{replyer})
@@ -9,6 +10,10 @@
 	<select id="read" resultType="org.duffy.domain.ReplyVO">
 		select * from tbl_reply where rno=#{rno}
 	</select>
+	
+	<delete id="deleteByBno">
+		delete from tbl_reply where bno = #{bno}
+	</delete>
 	
 	<delete id="delete">
 		delete from tbl_reply where rno=#{rno}
@@ -23,7 +28,7 @@
 		select rno, bno, reply, replyer, replydate, updatedate from(
    			select /*+ index(tbl_reply index_reply) */ ROWNUM rn, rno, bno, reply, replyer, replyDate, updateDate
     		from tbl_reply
-    		where bno = 5545 and rno>0 and ROWNUM<=#{cri.pageNum} * #{cri.amount}
+    		where bno = #{bno} and rno>0 and ROWNUM<=#{cri.pageNum} * #{cri.amount}
                  )where rn>(#{cri.pageNum}-1) * #{cri.amount}
 ]]>
 	</select>

@@ -40,8 +40,14 @@ public class BoardMapperTests {
 	}
 	
 	@Test
+	public void testUpdateReplyCnt() {
+		boardMapper.updateReplyCnt(5542L, 4);
+		boardMapper.updateReplyCnt(5541L, 4);
+	}
+	
+	@Test
 	public void testRead() {
-		BoardVO baord = boardMapper.read(699L);
+		BoardVO baord = boardMapper.read(5563L);
 		
 		log.info(baord);
 	}

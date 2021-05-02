@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName"
@@ -29,21 +29,32 @@
 		destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
 	</bean>
-	
+
+
 	<!-- sqlSession Factory -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
-	<tx:annotation-driven/>
-	
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	
-	<mybatis-spring:scan base-package="org.duffy.mapper"/>
-	
 
-	<context:component-scan base-package="org.duffy.service"> </context:component-scan>
-	<context:component-scan base-package="org.duffy.aop"> </context:component-scan>
-		
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven />
+
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<mybatis-spring:scan
+		base-package="org.duffy.mapper" />
+
+
+	<context:component-scan
+		base-package="org.duffy.service">
+	</context:component-scan>
+	<context:component-scan
+		base-package="org.duffy.aop">
+	</context:component-scan>
+
 </beans>

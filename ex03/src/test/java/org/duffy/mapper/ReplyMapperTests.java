@@ -31,6 +31,19 @@ public class ReplyMapperTests {
 	}
 	
 	@Test
+	public void testInsert2() {
+		ReplyVO reply = new ReplyVO();
+		
+		reply.setBno(5582L);
+		reply.setReply("TEST");
+		reply.setReplyer("TESTER");
+		
+		int count = replyMapper.insert(reply);
+		
+		log.info(count);
+	}
+	
+	@Test
 	public void testInsert() {
 		
 		IntStream.rangeClosed(1, 10).forEach(i -> {
@@ -46,7 +59,7 @@ public class ReplyMapperTests {
 	@Test
 	public void testRead() {
 		
-		log.info(replyMapper.read(2L));
+		log.info(replyMapper.read(5545L));
 	}
 	
 	@Test
@@ -68,9 +81,9 @@ public class ReplyMapperTests {
 	@Test
 	public void testGetList() {
 		
-		Criteria cri = new Criteria(2, 2);
+		Criteria cri = new Criteria(1, 10);
 		
-		List<ReplyVO> list = replyMapper.getListWithPaging(cri, 5544L);
+		List<ReplyVO> list = replyMapper.getListWithPaging(cri, 5545L);
 		
 		list.forEach(log::info);
 	}

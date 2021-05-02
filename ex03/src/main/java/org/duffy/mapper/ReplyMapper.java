@@ -14,6 +14,8 @@ public interface ReplyMapper {
 	
 	public int delete(Long rno);
 	
+	public int deleteByBno(Long bno);
+	
 	public int update(ReplyVO replyVO);
 	
 	public List<ReplyVO> getListWithPaging(@Param("cri")Criteria cri, @Param("bno")Long bno);

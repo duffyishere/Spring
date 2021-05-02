@@ -1,7 +1,5 @@
 package org.duffy.controller;
 
-import java.util.List;
-
 import org.duffy.domain.Criteria;
 import org.duffy.domain.ReplyPageDTO;
 import org.duffy.domain.ReplyVO;
