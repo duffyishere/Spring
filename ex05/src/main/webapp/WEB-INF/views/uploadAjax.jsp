@@ -10,19 +10,35 @@
 	<h1>Upload with Ajax</h1>
 
 	<div class="uploadDiv">
-		<input type="file" name='uploadFiles' multiple>
-	</div>
+		<input type="file" name='uploadFiles' multiple></p>
+        <button id="uploadBtn">Upload</button>
+    </div>
+    <div class="uploadResult">
+        <ul>
 
-	<button id="uploadBtn">Upload</button>
+        </ul>
+    </div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 		crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
+
+        let uploadResult = $(".uploadResult");
+
+        function showUploadedFiles(uploadResultArr){
+            let str = "";
+
+            $(uploadResultArr).each(function (i, obj){
+               str += "<li>"+obj.fileName+"</li>";
+            });
+            uploadResult.append(str);
+        }
+
 		$(document).ready(function() {
-			var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-			var maxSize = 5242880; //5MB
+			let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+			let maxSize = 5242880; //5MB
 
 			function checkExtension(fileName, fileSize) {
 
@@ -38,14 +54,16 @@
 				return true;
 			}
 
+			let cloneObj = $(".uploadDiv");
+
 			$("#uploadBtn").on("click", function(e) {
-				var formData = new FormData();
-				var inputFile = $("input[name='uploadFiles']");
-				var files = inputFile[0].files;
+				let formData = new FormData();
+				let inputFile = $("input[name='uploadFiles']");
+				let files = inputFile[0].files;
 
 				console.log(files)
 
-				for (var i = 0; i < files.length; i++) {
+				for (let i = 0; i < files.length; i++) {
 					console.log(files[i].size);
 					if (!checkExtension(files[i].name, files[i].size)) {
 						return false;
@@ -65,9 +83,47 @@
 					}
 
 				});
+
+                $.ajax({
+                    url : '\\uploadAjaxAction',
+                    processData : false,
+                    contentType : false,
+                    data : formData,
+                    type: 'POST',
+                    dataType: 'json',
+                    success : function(result) {
+                        console.log(result);
+                        showUploadedFiles(result);
+
+                        $(".uploadDiv").html(cloneObj.html());
+                    }
+                });
+
 			});
 
 		});
 	</script>
 </body>
+<style>
+	.uploadResult{
+		width: 100%;
+		background-color: gray;
+	}
+
+	.uploadResult ul{
+		display: flex;
+		flex-flow: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.uploadResult ul li{
+		list-style: none;
+		padding: 10px;
+	}
+
+	.uploadResult ul li img{
+		width: 20px;
+	}
+</style>
 </html>
