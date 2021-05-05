@@ -55,20 +55,23 @@
 
             $(uploadResultArr).each(function (i, obj){
                if(!obj.image){
-               		str += "<li><img src='/resources/img/attach.png'/>"+obj.fileName+"</li>"
+				    let fileCallPath = encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
+				    console.log(fileCallPath);
+
+               		str += "<li><a href='/download?fileName="+fileCallPath+"'><img src='/resources/img/attach.png'/></a>"+obj.fileName+"</li>"
 			   }
                else {
 				   let fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
 				   console.log(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
 
-				   str += "<li>"+"<img src='/display?fileName="+fileCallPath+"'/></li>";
+				   str += "<li><img src='/display?fileName="+fileCallPath+"'/></li>";
 			   }
             });
             uploadResult.append(str);
         }
 
 		$(document).ready(function() {
-			let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+			let regex = new RegExp("(.*?)\.(png|gif|jpg|jpeg|pdf|hwp)$");
 			let maxSize = 5242880; //5MB
 
 			function checkExtension(fileName, fileSize) {
@@ -77,7 +80,7 @@
 					alert("파일 사이즈 초과")
 					return false;
 				}
-				if (regex.test(fileName)) {
+				if (!regex.test(fileName)) {
 					alert("해당 종류의 파일은 업로드할 수 없습니다.");
 					return false
 				}
@@ -85,7 +88,7 @@
 				return true;
 			}
 
-			let cloneObj = $(".uploadDiv");
+			let cloneObj = $(".uploadDiv").clone();
 
 			$("#uploadBtn").on("click", function(e) {
 				let formData = new FormData();
@@ -104,7 +107,7 @@
 				}
 
 				$.ajax({
-					url : '\\uploadAjaxAction',
+					url : '/uploadAjaxAction',
 					processData : false,
 					contentType : false,
 					data : formData,
@@ -116,7 +119,7 @@
 				});
 
                 $.ajax({
-                    url : '\\uploadAjaxAction',
+                    url : '/uploadAjaxAction',
                     processData : false,
                     contentType : false,
                     data : formData,

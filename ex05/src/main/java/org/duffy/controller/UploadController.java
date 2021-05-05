@@ -191,6 +191,8 @@ public class UploadController {
 		
 		String resourceName = resource.getFilename();
 		
+		String resourceOriginalName = resourceName.substring(resourceName.indexOf("_")+1);
+		
 		HttpHeaders headers = new HttpHeaders();
 		
 		try {
@@ -198,17 +200,17 @@ public class UploadController {
 			
 			if(userAgent.contains("Trident")) {
 				log.info("IE...........");
-				downloadName = URLEncoder.encode(resourceName, "UTF-8").replaceAll("/", " ");
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8").replaceAll("/", " ");
 				log.info(downloadName);
 			}
 			else if(userAgent.contains("Edge")) {
 				log.info("Edge.............");
-				downloadName = URLEncoder.encode(resourceName, "UTF-8");
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8");
 				log.info(downloadName);
 			}
 			else {
 				log.info("Chrome........");
-				downloadName = new String(resourceName.getBytes("UTF-8"), "ISO-8859-1");
+				downloadName = new String(resourceOriginalName.getBytes("UTF-8"), "ISO-8859-1");
 				log.info(downloadName);
 			}
 			headers.add("Content-Disposition", "attachment; filename="+downloadName);
