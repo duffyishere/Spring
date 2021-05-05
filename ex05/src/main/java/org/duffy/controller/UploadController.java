@@ -6,16 +6,19 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import org.duffy.domain.AttachDTO;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -78,9 +81,10 @@ public class UploadController {
 		List<AttachDTO> list = new ArrayList<AttachDTO>();
 		
 		String uploadFolder = "/Users/zzun_ho9/upload";
-
-		File  uploadPath = new File(uploadFolder, getFolder());
-		log.info(uploadPath);
+		String uploadFolderPath = getFolder();
+		
+		File uploadPath = new File(uploadFolder, uploadFolderPath);
+		log.info("1"+uploadPath);
 		
 		if(!uploadPath.exists()) {
 			uploadPath.mkdirs();
@@ -98,19 +102,23 @@ public class UploadController {
 			log.info("only file name :"+uploadFileName);
 			
 			attach.setFileName(uploadFileName);
+			log.info("uploadFileName :"+uploadFileName);
 			
 			UUID uuid = UUID.randomUUID();
 			
 			uploadFileName = uuid + "_"+ uploadFileName;
 			
 			attach.setUuid(String.valueOf(uuid));
-			attach.setUploadPath(uploadFolder);
+			log.info("uuid"+uuid);
+			attach.setUploadPath(uploadFolderPath);
+			log.info("uploadFolder"+uploadFolderPath);
 			
 //			File saveFile = new File(uploadFolder, uploadFileName);
 
 			try {
 				File saveFile = new File(uploadPath, uploadFileName);
 				file.transferTo(saveFile);
+				log.info("uploadPath :"+uploadPath);
 				if(checkImage(saveFile)) {
 					attach.setImage(true);
 					
@@ -132,14 +140,38 @@ public class UploadController {
 	
 	private boolean checkImage(File file) {
 		try {
-			
 			String contentType = Files.probeContentType(file.toPath());
+			
 			return contentType.startsWith("image");
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		return false;
+	}
+	
+	@GetMapping(value="/display")
+	@ResponseBody
+	public ResponseEntity<byte[]> getFile(String fileName) {
+		log.info("file name :"+fileName);
+		
+		File file = new File("/Users/zzun_ho9/upload/"+fileName);
+		log.info(file);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-Type", Files.probeContentType(file.toPath())); // image
+			
+			result =  new ResponseEntity<byte[]> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+//			log.info(Arrays.toString(FileCopyUtils.copyToByteArray(file)));
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 }

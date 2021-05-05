@@ -58,7 +58,10 @@
                		str += "<li><img src='/resources/img/attach.png'/>"+obj.fileName+"</li>"
 			   }
                else {
-				   str += "<li>"+obj.fileName+"</li>";
+				   let fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
+				   console.log(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
+
+				   str += "<li>"+"<img src='/display?fileName="+fileCallPath+"'/></li>";
 			   }
             });
             uploadResult.append(str);
