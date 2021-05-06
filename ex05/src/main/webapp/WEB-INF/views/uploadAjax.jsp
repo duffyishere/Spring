@@ -64,7 +64,12 @@
 				   let fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
 				   console.log(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
 
-				   str += "<li><img src='/display?fileName="+fileCallPath+"'/></li>";
+				   let originalPath = obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName
+
+				   originalPath = originalPath.replace(new RegExp(/\\/g),"/");
+
+				   str += "<li><a href=javascript:showImage(\'"+originalPath+"\')><img src='/display?fileName="+fileCallPath+"'></a></li>";
+				   // str += "<li><img src='/display?fileName="+fileCallPath+"'/></li>";
 			   }
             });
             uploadResult.append(str);
@@ -136,6 +141,10 @@
 			});
 
 		});
+
+        function showImage(fileCallPath){
+        	alert(fileCallPath);
+		}
 	</script>
 </body>
 </html>
