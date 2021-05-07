@@ -95,7 +95,7 @@
 
 			let cloneObj = $(".uploadDiv").clone();
 
-			$("#uploadBtn").on("click", function(e) {
+			function uploadFile(){
 				let formData = new FormData();
 				let inputFile = $("input[name='uploadFiles']");
 				let files = inputFile[0].files;
@@ -123,24 +123,28 @@
 
 				});
 
-                $.ajax({
-                    url : '/uploadAjaxAction',
-                    processData : false,
-                    contentType : false,
-                    data : formData,
-                    type: 'POST',
-                    dataType: 'json',
-                    success : function(result) {
-                        console.log(result);
-                        showUploadedFiles(result);
+				$.ajax({
+					url : '/uploadAjaxAction',
+					processData : false,
+					contentType : false,
+					data : formData,
+					type: 'POST',
+					dataType: 'json',
+					success : function(result) {
+						console.log(result);
+						showUploadedFiles(result);
 
-                        $(".uploadDiv").html(cloneObj.html());
-                    }
-                });
+						$(".uploadDiv").html(cloneObj.html());
+						$(".uploadDiv button").on("click", uploadFile);
+					}
+				});
+			}
 
+			$("#uploadBtn").on("click", function(e) {
+				uploadFile();
 			});
-
 		});
+
 
         function showImage(fileCallPath){
         	alert(fileCallPath);
