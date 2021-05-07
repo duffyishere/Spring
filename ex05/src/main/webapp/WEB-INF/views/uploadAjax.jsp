@@ -1,32 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Upload Ajax</title>
-<style type="text/css">
-	.uploadResult{
-		width: 100%;
-		background-color: gray;
-	}
-
-	.uploadResult ul{
-		display: flex;
-		flex-flow: row;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.uploadResult ul li{
-		list-style: none;
-		padding: 10px;
-	}
-
-	.uploadResult ul li img{
-		width: 20px;
-	}
-</style>
+<link href="/resources/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,11 +17,16 @@
 		<input type="file" name='uploadFiles' multiple></p>
         <button id="uploadBtn">Upload</button>
     </div>
+
     <div class="uploadResult">
         <ul>
-
         </ul>
     </div>
+
+	<div class="bigPictureWrapper">
+		<div class="bigPicture">
+		</div>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -48,7 +34,7 @@
 
 	<script type="text/javascript">
 
-        let uploadResult = $(".uploadResult");
+        let uploadResult = $(".uploadResult ul");
 
         function showUploadedFiles(uploadResultArr){
             let str = "";
@@ -72,14 +58,16 @@
 				   // str += "<li><img src='/display?fileName="+fileCallPath+"'/></li>";
 			   }
             });
-            uploadResult.append(str);
+			uploadResult.append(str);
         }
 
 		$(document).ready(function() {
-			let regex = new RegExp("(.*?)\.(png|gif|jpg|jpeg|pdf|hwp)$");
+			let regex = new RegExp("(.*?)\.(png|gif|jpg|JPG|jpeg|pdf|hwp)$");
 			let maxSize = 5242880; //5MB
 
 			function checkExtension(fileName, fileSize) {
+
+				console.log("fileName: "+fileName);
 
 				if (fileSize >= maxSize) {
 					alert("파일 사이즈 초과")
@@ -100,10 +88,15 @@
 				let inputFile = $("input[name='uploadFiles']");
 				let files = inputFile[0].files;
 
-				console.log(files)
+				console.log("files size: "+files.length);
+				if(files.length <= 0){
+					alert("업로드하실 파일을 선택헤주세요.")
+					return false;
+				}
+
 
 				for (let i = 0; i < files.length; i++) {
-					console.log(files[i].size);
+					console.log("file size: "+files[i].size);
 					if (!checkExtension(files[i].name, files[i].size)) {
 						return false;
 					}
@@ -143,11 +136,22 @@
 			$("#uploadBtn").on("click", function(e) {
 				uploadFile();
 			});
+
+			$(".bigPictureWrapper").on("click", function (e){
+				$(".bigPicture").animate({width: '0%', height: '0%'}, 800);
+				setTimeout(function (){
+					$(".bigPictureWrapper").hide();
+				}, 1000);
+			})
 		});
 
 
         function showImage(fileCallPath){
-        	alert(fileCallPath);
+        	// alert(fileCallPath);
+
+			$(".bigPictureWrapper").css("display", "flex").show();
+			$(".bigPicture").html("<img src='/display?fileName="+encodeURI(fileCallPath)+"'/>")
+			.animate({width:'100%', height:'100%'}, 800);
 		}
 	</script>
 </body>
