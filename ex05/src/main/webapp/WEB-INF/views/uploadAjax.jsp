@@ -19,7 +19,7 @@
     </div>
 
     <div class="uploadResult">
-        <ul>
+        <ul class="uploadResultUL">
         </ul>
     </div>
 
@@ -44,7 +44,8 @@
 				    let fileCallPath = encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
 				    console.log(fileCallPath);
 
-               		str += "<li><a href='/download?fileName="+fileCallPath+"'><img src='/resources/img/attach.png'/></a>"+obj.fileName+"</li>"
+               		str += "<li><a href='/download?fileName="+fileCallPath+"'><img src='/resources/img/attach.png'/></a>"+obj.fileName+
+							"<span data-file=\'"+fileCallPath+"\' data-type='file'>x</span></li>";
 			   }
                else {
 				   let fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
@@ -54,12 +55,44 @@
 
 				   originalPath = originalPath.replace(new RegExp(/\\/g),"/");
 
-				   str += "<li><a href=javascript:showImage(\'"+originalPath+"\')><img src='/display?fileName="+fileCallPath+"'></a></li>";
+				   str += "<li><a href=javascript:showImage(\'"+originalPath+"\')><img src='/display?fileName="+fileCallPath+"'></a>"+
+               				"<span data-file=\'"+fileCallPath+"\' data-type='image'>x</span></li></li>";
 				   // str += "<li><img src='/display?fileName="+fileCallPath+"'/></li>";
 			   }
             });
 			uploadResult.append(str);
         }
+
+        function removeFile(){
+        	let ul = $(".uploadResultUL");
+			let li = ul[0].getElementsByTagName('li');
+
+			console.log(li);
+
+			if(li.length > 0)  {
+				li[0].remove();
+			}
+		}
+
+		$(".uploadResult").on("click", "span", function (e){
+			let targetFile = $(this).data("file");
+			let targetType = $(this).data("type");
+
+			console.log(targetFile);
+
+			$.ajax({
+				url: '/deleteFile',
+				data: {'fileName': targetFile, 'fileType': targetType},
+				dataType: 'text',
+				type: 'POST',
+				success: function (result){
+					alert(result);
+					removeFile();
+				}
+			});
+
+
+		})
 
 		$(document).ready(function() {
 			let regex = new RegExp("(.*?)\.(png|gif|jpg|JPG|jpeg|pdf|hwp)$");
@@ -90,7 +123,7 @@
 
 				console.log("files size: "+files.length);
 				if(files.length <= 0){
-					alert("업로드하실 파일을 선택헤주세요.")
+					alert("업로드 하실 파일을 선택헤주세요.")
 					return false;
 				}
 
@@ -104,17 +137,17 @@
 					formData.append("uploadFiles", files[i]);
 				}
 
-				$.ajax({
-					url : '/uploadAjaxAction',
-					processData : false,
-					contentType : false,
-					data : formData,
-					method : 'POST',
-					success : function(result) {
-						alert("Uploaded");
-					}
-
-				});
+				// $.ajax({
+				// 	url : '/uploadAjaxAction',
+				// 	processData : false,
+				// 	contentType : false,
+				// 	data : formData,
+				// 	method : 'POST',
+				// 	success : function(result) {
+				// 		alert("Uploaded");
+				// 	}
+				//
+				// });
 
 				$.ajax({
 					url : '/uploadAjaxAction',
@@ -124,6 +157,7 @@
 					type: 'POST',
 					dataType: 'json',
 					success : function(result) {
+						alert("Uploaded")
 						console.log(result);
 						showUploadedFiles(result);
 
