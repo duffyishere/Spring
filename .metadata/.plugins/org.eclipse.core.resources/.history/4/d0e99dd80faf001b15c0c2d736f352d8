@@ -1,0 +1,11 @@
+.uploadResult ul li{
+    background-color: gray;
+    width: 100%;
+	list-style-type: none;
+    float: left;
+    margin-left: 20px;
+}
+
+ul li{
+
+}

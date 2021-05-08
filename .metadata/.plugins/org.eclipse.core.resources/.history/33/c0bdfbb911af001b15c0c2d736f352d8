@@ -1,0 +1,12 @@
+
+.uploadResult{
+	width: 100%;
+    height: 10px;
+    background-color: gray;
+}
+
+li{
+    float: left;
+    list-style-type: none;
+    margin-left: 20px;
+}

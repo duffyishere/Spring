@@ -1,0 +1,5 @@
+package org.duffy.domain;
+
+public class AttachDTO {
+
+}

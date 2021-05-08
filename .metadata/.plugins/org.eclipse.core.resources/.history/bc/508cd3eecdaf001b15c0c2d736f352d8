@@ -1,0 +1,8 @@
+package org.duffy.mapper;
+
+import org.duffy.domain.BoardAttachVO;
+
+public interface BoardAttachMapper {
+
+	public void insert(BoardAttachVO vo);
+}

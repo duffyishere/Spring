@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;org.duffy.service.ReplyServieImpl&apos; to &apos;ReplyServiecImpl&apos;&#x0A;- Original project: &apos;ex03&apos;&#x0A;- Original element: &apos;org.duffy.service.ReplyServieImpl&apos;&#x0A;- Renamed element: &apos;org.duffy.service.ReplyServiecImpl&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ReplyServieImpl&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;org.duffy.service{ReplyServieImpl.java[ReplyServieImpl" matchStrategy="1" name="ReplyServiecImpl" qualified="false" references="true" similarDeclarations="false" stamp="1618403058007" textual="false" version="1.0"/>
+</session>

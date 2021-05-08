@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4aa2d591-06d4-4cad-99b7-bb05e7bdf7db" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.tasks.ui.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.tasks.ui.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.browser.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.browser.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.commons.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.commons.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.dashboard.ui.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.dashboard.ui.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.springsource.ide.eclipse.dashboard.ui/feeds/dashboard.feeds.blogs/-549550714.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/.plugins/org.springsource.ide.eclipse.dashboard.ui/feeds/dashboard.feeds.blogs/-549550714.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../.metadata/version.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../.metadata/version.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../ex02_01/target/m2e-wtp/web-resources/META-INF/maven/org.duffy/controller/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../ex02_01/target/m2e-wtp/web-resources/META-INF/maven/org.duffy/controller/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/org/duffy/domain/ReplyVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/org/duffy/domain/ReplyVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../org/duffy/mapper/ReplyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../org/duffy/mapper/ReplyMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../webapp/WEB-INF/views/board/get.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../webapp/WEB-INF/views/board/get.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../webapp/resources/js/reply.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../webapp/resources/js/reply.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../target/classes/org/duffy/domain/ReplyVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../target/classes/org/duffy/domain/ReplyVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../target/classes/org/duffy/mapper/ReplyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../target/classes/org/duffy/mapper/ReplyMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../target/m2e-wtp/web-resources/META-INF/maven/org.duffy/controller/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../target/m2e-wtp/web-resources/META-INF/maven/org.duffy/controller/pom.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="ProjectId" id="1rKhStTHuM784YuZF8sgVFRNGVO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4aa2d591-06d4-4cad-99b7-bb05e7bdf7db" name="Default Changelist" comment="" />
+      <created>1618730692890</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618730692890</updated>
+      <workItem from="1618730694641" duration="2000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
