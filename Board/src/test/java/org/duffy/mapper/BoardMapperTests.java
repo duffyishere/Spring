@@ -25,6 +25,13 @@ public class BoardMapperTests {
 	}
 	
 	@Test
+	public void testDelete() {
+		
+		boardMapper.delete(9L);
+	}
+	
+	
+	@Test
 	public void testInsert() {
 		
 		BoardVO board = new BoardVO();
@@ -33,7 +40,8 @@ public class BoardMapperTests {
 		board.setWriter("newbie");
 		board.setContext("test");
 		
-		log.info(boardMapper.insert(board));
+		log.info("-----------------------");
+		log.info(boardMapper.insert(board)+".............................");
 	}
 
 }

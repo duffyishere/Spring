@@ -37,25 +37,33 @@ public class BoardController {
 		model.addAttribute("post", boardService.read(bno));
 	}
 	
-	@PostMapping("/remove")
+	@PostMapping("/register")
+	public String register(BoardVO board, RedirectAttributes attributes) {
+		
+		log.info("/register");
+		
+		attributes.addFlashAttribute("result", boardService.register(board));
+		
+		return "redirect:/board/register";
+	}
+	
+	@PostMapping("/delete")
 	public String remove(Long bno, RedirectAttributes attributes) {
 		
-		log.info("/remove?bno"+bno);
+		log.info("/delete?bno"+bno);
 		
-		attributes.addFlashAttribute(boardService.remove(bno));
+		attributes.addFlashAttribute("result", boardService.delete(bno));
 		
 		return "redirect:/board/list";
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO board, RedirectAttributes attributes) {
+	public void modify(BoardVO board, Model model) {
 		Long bno = board.getBno();
 		
-		log.info("/remove?bno"+bno);
+		log.info("/modify?bno"+bno);
 		
-		attributes.addFlashAttribute(boardService.remove(bno));
-		
-		return "redirect:/board/list";
+		model.addAttribute("post", boardService.read(bno));
 	}
 	
 }

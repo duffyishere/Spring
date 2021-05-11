@@ -11,7 +11,10 @@ select * from tbl_board where bno = #{bno}
 </select>
 
 <insert id="insert">
-insert into tbl_board(db_board.tbl_board.title, db_board.tbl_board.context, db_board.tbl_board.writer) values (#{title}, #{writer}, #{context})
+	insert into tbl_board(db_board.tbl_board.title, db_board.tbl_board.context, db_board.tbl_board.writer) values (#{title}, #{writer}, #{context})
+	<selectKey keyProperty="bno" resultType="long" order="AFTER">
+		select last_insert_id()
+	</selectKey>
 </insert>
 
 <update id="update">

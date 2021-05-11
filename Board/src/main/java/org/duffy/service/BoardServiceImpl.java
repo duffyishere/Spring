@@ -46,7 +46,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int remove(Long bno) {
+	public int delete(Long bno) {
 		log.info("remove,,,,,,,,,,,,"+bno);
 		
 		return boardMapper.delete(bno);
