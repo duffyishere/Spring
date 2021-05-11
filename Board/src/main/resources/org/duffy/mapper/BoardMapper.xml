@@ -5,4 +5,21 @@
 <select id="getList" resultType="org.duffy.domain.BoardVO">
 select * from tbl_board
 </select>
+
+<select id="read" resultType="org.duffy.domain.BoardVO">
+select * from tbl_board where bno = #{bno}
+</select>
+
+<insert id="insert">
+insert into tbl_board(db_board.tbl_board.title, db_board.tbl_board.context, db_board.tbl_board.writer) values (#{title}, #{writer}, #{context})
+</insert>
+
+<update id="update">
+update tbl_board set db_board.tbl_board.title=#{title}, db_board.tbl_board.writer=#{writer}, db_board.tbl_board.context=#{context} where db_board.tbl_board.bno=#{bno};
+</update>
+
+<delete id="delete">
+delete from tbl_board where db_board.tbl_board.bno=#{bno};
+</delete>
+
 </mapper>

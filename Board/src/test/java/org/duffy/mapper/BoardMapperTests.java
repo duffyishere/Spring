@@ -1,5 +1,6 @@
 package org.duffy.mapper;
 
+import org.duffy.domain.BoardVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,18 @@ public class BoardMapperTests {
 		
 		boardMapper.getList().forEach(log::info);
 //		log.info(boardMapper.getList());
+	}
+	
+	@Test
+	public void testInsert() {
+		
+		BoardVO board = new BoardVO();
+		
+		board.setTitle("test03");
+		board.setWriter("newbie");
+		board.setContext("test");
+		
+		log.info(boardMapper.insert(board));
 	}
 
 }

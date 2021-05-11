@@ -14,9 +14,9 @@ public interface BoardMapper {
 	
 	public BoardVO read(Long bno);
 	
-	public int register(BoardVO board);
+	public int insert(BoardVO board);
 	
-	public int modify(BoardVO board);
+	public int update(BoardVO board);
 	
 	public int delete(Long bno);
 }
