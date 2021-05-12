@@ -25,14 +25,15 @@
 		<constructor-arg ref="hikariConfig" />
 	</bean>
 
-
 	<!-- sqlSession Factory -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
-	<mybatis-spring:scan base-package="org.duffy.mapper"/>
-	
-	<context:component-scan base-package="org.duffy.service"/>
+
+	<mybatis-spring:scan
+		base-package="org.duffy.mapper" />
+
+	<context:component-scan
+		base-package="org.duffy.service" />
 </beans>

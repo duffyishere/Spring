@@ -10,9 +10,9 @@ public interface BoardService {
 	
 	public BoardVO read(Long bno);
 	
-	public int register(BoardVO board);
+	public Long register(BoardVO board);
 	
-	public int modify(BoardVO board);
+	public boolean modify(BoardVO board);
 	
-	public int delete(Long bno);
+	public boolean delete(Long bno);
 }

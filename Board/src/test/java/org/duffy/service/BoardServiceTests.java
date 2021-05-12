@@ -19,6 +19,18 @@ public class BoardServiceTests {
 	private BoardService service;
 	
 	@Test
+	public void testRegister() {
+		BoardVO board = new BoardVO();
+		
+		board.setTitle("22New22");
+		board.setWriter("dasdb");
+		board.setContext("22NEW");
+		
+		log.info(service.register(board)+"..................");
+		log.info(board.getBno());
+	}
+	
+	@Test
 	public void testModify() {
 		
 		BoardVO board = new BoardVO();

@@ -40,8 +40,9 @@ public class BoardMapperTests {
 		board.setWriter("newbie");
 		board.setContext("test");
 		
-		log.info("-----------------------");
+		log.info("----------------------------------------------");
 		log.info(boardMapper.insert(board)+".............................");
+		log.info(board.getBno());
 	}
 
 }

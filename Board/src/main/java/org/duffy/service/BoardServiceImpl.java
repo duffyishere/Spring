@@ -32,24 +32,26 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int register(BoardVO board) {
+	public Long register(BoardVO board) {
 		log.info("register.........."+board.getBno());
 		
-		return boardMapper.insert(board);
+		boardMapper.insert(board);
+		
+		return board.getBno();
 	}
 
 	@Override
-	public int modify(BoardVO board) {
+	public boolean modify(BoardVO board) {
 		log.info("modify,,,,,,,,,,,"+board.getBno());
 		
-		return boardMapper.update(board);
+		return boardMapper.update(board)>=1? true: false;
 	}
 
 	@Override
-	public int delete(Long bno) {
+	public boolean delete(Long bno) {
 		log.info("remove,,,,,,,,,,,,"+bno);
 		
-		return boardMapper.delete(bno);
+		return boardMapper.delete(bno)>=1? true: false;
 	}
 
 }

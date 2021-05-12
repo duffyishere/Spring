@@ -42,7 +42,9 @@ public class BoardController {
 		
 		log.info("/register POST");
 		
-		attributes.addFlashAttribute("result", boardService.register(board));
+		boardService.register(board);
+		
+		attributes.addFlashAttribute("result", board.getBno());
 		
 		return "redirect:/board/list";
 	}
@@ -80,7 +82,7 @@ public class BoardController {
 		
 		attributes.addFlashAttribute("result", boardService.modify(board));
 		
-		return "redirect:/board/list";
+		return "redirect:/board/post?bno="+board.getBno();
 	}
 	
 }

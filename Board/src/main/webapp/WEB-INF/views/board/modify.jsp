@@ -23,15 +23,15 @@
                         <input type="hidden" class="form-control" name="bno" value="<c:out value='${post.bno}'/>">
                     </div>
                     <div class="form-group">
-                        <label for="title">Title</label>
+                        <label>Title</label>
                         <input type="text" class="form-control" name="title" value="<c:out value='${post.title}'/>">
                     </div>
                     <div class="form-group">
-                        <label for="writer">Writer</label>
+                        <label>Writer</label>
                         <input type="text" class="form-control" name="writer" readonly value="<c:out value='${post.writer}'/>">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Context</label>
+                        <label>Context</label>
                         <textarea class="form-control" name="context" rows="10"><c:out value='${post.context}'/></textarea>
                     </div>
                     <div style="margin-top: 40px">
@@ -62,7 +62,7 @@
 
         $(".delete").on('click', function(e) {
         	let bno = <c:out value='${post.bno}'/>
-            let form = $('<form></form>');
+            const form = $('<form></form>');
             form.attr('action', "/board/delete");
             form.attr('method', 'post');
             form.appendTo('body');
