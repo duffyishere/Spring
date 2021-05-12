@@ -33,14 +33,14 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public int register(BoardVO board) {
-		log.info("register.........."+board);
+		log.info("register.........."+board.getBno());
 		
 		return boardMapper.insert(board);
 	}
 
 	@Override
 	public int modify(BoardVO board) {
-		log.info("modify,,,,,,,,,,,"+board);
+		log.info("modify,,,,,,,,,,,"+board.getBno());
 		
 		return boardMapper.update(board);
 	}

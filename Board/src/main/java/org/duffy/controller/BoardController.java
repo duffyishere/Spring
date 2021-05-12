@@ -40,11 +40,17 @@ public class BoardController {
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes attributes) {
 		
-		log.info("/register");
+		log.info("/register POST");
 		
 		attributes.addFlashAttribute("result", boardService.register(board));
 		
-		return "redirect:/board/register";
+		return "redirect:/board/list";
+	}
+	
+	@GetMapping("/register")
+	public void register() {
+		
+		log.info("register GET");
 	}
 	
 	@PostMapping("/delete")
@@ -57,13 +63,24 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	@GetMapping("/modify")
+	public void modify(Long bno, Model model) {
+		
+		log.info("modify GET");
+		
+		model.addAttribute("post", boardService.read(bno));
+	}
+	
+	
 	@PostMapping("/modify")
-	public void modify(BoardVO board, Model model) {
+	public String modify(BoardVO board, RedirectAttributes attributes) {
 		Long bno = board.getBno();
 		
 		log.info("/modify?bno"+bno);
 		
-		model.addAttribute("post", boardService.read(bno));
+		attributes.addFlashAttribute("result", boardService.modify(board));
+		
+		return "redirect:/board/list";
 	}
 	
 }
