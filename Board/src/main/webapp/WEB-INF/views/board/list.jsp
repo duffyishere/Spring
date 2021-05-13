@@ -41,6 +41,11 @@
 			<!-- /.panel-body -->
 		</div>
 		<!-- /.panel -->
+		<div>
+			<form action="/board/post">
+				<input type="hidden" name="bno" value="">
+			</form>
+		</div>
 	</div>
 	<!-- /.col-lg-12 -->
 <div class="modal" id="myModal" tabindex="-1" role="dialog">
@@ -57,19 +62,12 @@
 				<p>처되었습니다.</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">Save changes</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
-
-	<div>
-		<form action="/board/post">
-			<input type="hidden" name="bno" value="">
-
-		</form>
-	</div>
 </div>
+
 	<script
 			src="https://code.jquery.com/jquery-3.6.0.js"
 			integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -77,16 +75,26 @@
 	</script>
 
 	<script type="text/javascript">
+		function showModal(result){
+			if(typeof result != "undefined"){
+				if(typeof result != "boolean"){
+					$(".modal-body p").text(result+"번 글이 작성되었습니다.")
+				}
+				$("#myModal").modal();
+			}
+		}
+
 		$(document).ready(function (){
 
-			console.log(<c:out value="${result}"/> )
+			var result = <c:out value="${result}"/>
+
+			showModal(result);
 
             $(".register").on("click", function (e){
 
                 $(location).attr("href", "/board/register");
             });
-			
-			
+
 
 			$(".title").on("click", function (e){
 				e.preventDefault();

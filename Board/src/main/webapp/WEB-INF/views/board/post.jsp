@@ -46,6 +46,26 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>처되었습니다.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 	<script
 			src="https://code.jquery.com/jquery-3.6.0.js"
@@ -54,24 +74,37 @@
 	</script>
 	
     <script>
-        $(".list").on("click", function (e) {
+        function showModal(result){
+            if(typeof result != "undefined"){
+                $("#myModal").modal();
+            }
+        }
 
-            $(location).attr("href", "/board/list");
-        });
+        $(document).ready(function (){
 
-        $(".modify").on("click", function (e){
-            $(location).attr("href", "/board/modify?bno="+<c:out value="${post.bno}"/>);
+            var result = <c:out value="${result}"/>
+
+            showModal(result);
+
+            $(".list").on("click", function (e) {
+
+                $(location).attr("href", "/board/list");
+            });
+
+            $(".modify").on("click", function (e){
+                $(location).attr("href", "/board/modify?bno="+<c:out value="${post.bno}"/>);
+            })
+
+            $(".delete").on('click', function(e) {
+                let bno = <c:out value='${post.bno}'/>
+                    let form = $('<form></form>');
+                form.attr('action', "/board/delete");
+                form.attr('method', 'post');
+                form.appendTo('body');
+                form.append($('<input type="hidden" value="' +bno+ '" name=bno>'));
+                form.submit();
+            });
         })
-
-        $(".delete").on('click', function(e) {
-        	let bno = <c:out value='${post.bno}'/>
-            let form = $('<form></form>');
-            form.attr('action', "/board/delete");
-            form.attr('method', 'post');
-            form.appendTo('body');
-            form.append($('<input type="hidden" value="' +bno+ '" name=bno>'));
-            form.submit();
-        });
     </script>
 
 <%@ include file="/includes/footer.jsp"%>
