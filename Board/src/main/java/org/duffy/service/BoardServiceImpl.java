@@ -3,6 +3,7 @@ package org.duffy.service;
 import java.util.List;
 
 import org.duffy.domain.BoardVO;
+import org.duffy.domain.Criteria;
 import org.duffy.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,11 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper boardMapper;
 	
 	@Override
-	public List<BoardVO> getList() {
-		log.info("get List,,,,,,,,,,,");
+	public List<BoardVO> getList(Criteria cri) {
+		log.info("Service get List,,,,,,,,,,,cri :"+cri);
 		
-		return boardMapper.getList();
+		
+		return boardMapper.getList(cri);
 	}
 
 	@Override

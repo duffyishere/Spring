@@ -3,7 +3,7 @@
 <mapper namespace="org.duffy.mapper.BoardMapper">
 
 <select id="getList" resultType="org.duffy.domain.BoardVO">
-select * from tbl_board order by bno desc
+select * from tbl_board order by bno desc limit #{amount}, 10
 </select>
 
 <select id="read" resultType="org.duffy.domain.BoardVO">

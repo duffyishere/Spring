@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.duffy.domain.BoardVO;
+import org.duffy.domain.Criteria;
 import org.springframework.stereotype.Repository;
 
 @Mapper
 @Repository
 public interface BoardMapper {
 
-	public List<BoardVO> getList();
+	public List<BoardVO> getList(Criteria cri);
 	
 	public BoardVO read(Long bno);
 	

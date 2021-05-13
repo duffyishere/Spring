@@ -1,6 +1,7 @@
 package org.duffy.mapper;
 
 import org.duffy.domain.BoardVO;
+import org.duffy.domain.Criteria;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class BoardMapperTests {
 	
 	@Test
 	public void testGetList() {
-		
-		boardMapper.getList().forEach(log::info);
+		Criteria cri = new Criteria();
+		boardMapper.getList(cri).forEach(log::info);
 //		log.info(boardMapper.getList());
 	}
 	
