@@ -67,7 +67,8 @@
 
         $(".list").on("click", function (e){
 
-            location.replace("/board/list")
+            history.back();
+            // location.replace("/board/list")
         })
     })
 </script>

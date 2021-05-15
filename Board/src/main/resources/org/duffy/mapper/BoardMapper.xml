@@ -5,6 +5,9 @@
 <select id="getList" resultType="org.duffy.domain.BoardVO">
 select * from(
     select * from tbl_board
+    <if test="keyword != null">
+    	where title like (#{keyword})
+    </if>
 )tbl_board
 order by bno desc limit 10 offset #{amount}
 </select>
@@ -29,7 +32,10 @@ delete from tbl_board where db_board.tbl_board.bno=#{bno};
 </delete>
 
 <select id="getTotal" resultType="int">
-SELECT COUNT(*) FROM tbl_board
+SELECT COUNT(*) FROM tbl_board 
+    <if test="keyword != null">
+    	where title like (#{keyword})
+    </if>
 </select>
 
 </mapper>

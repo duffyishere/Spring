@@ -88,7 +88,8 @@
 
             $(".list").on("click", function (e) {
 
-                $(location).attr("href", "/board/list");
+                history.back();
+                // $(location).attr("href", "/board/list");
             });
 
             $(".modify").on("click", function (e){

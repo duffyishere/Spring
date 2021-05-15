@@ -48,11 +48,15 @@
 
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
-						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						<c:if test="${page.prev}">
+							<li class="page-item"><a class="page-link" href="${page.cri.pageNum-1}">Previous</a></li>
+						</c:if>
 						<c:forEach var="num" begin="${page.startPage}" end="${page.endPage}">
-							<li class="page-item"><a class="page-link" href="${num}">${num}</a></li>
+							<li class="page-item ${page.cri.pageNum == num? 'active':'' } "><a class="page-link" href="${num}">${num}</a></li>
 						</c:forEach>
-						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+						<c:if test="${page.next}">
+							<li class="page-item"><a class="page-link" href="${page.cri.pageNum+1}">Next</a></li>
+						</c:if>
 					</ul>
 				</nav>
 			</div>
@@ -61,8 +65,12 @@
 		</div>
 		<!-- /.panel -->
 		<div>
-			<form action="/board/post">
-				<input type="hidden" name="bno" value="">
+			<form class="post" action="/board/post">
+				<input type="hidden" name="bno" value=""/>
+			</form>
+			<form class="list" action="/board/list">
+				<input type="hidden" name="pageNum" value=""/>
+				<input type="hidden" name="keyword" value="">
 			</form>
 		</div>
 	</div>
@@ -109,6 +117,23 @@
 
 			showModal(result);
 
+			$(".pagination li a").on("click", function (e){
+				e.preventDefault();
+
+				let keyWord = "${page.cri.keyword}";
+
+				if(keyWord == '%'){
+					keyWord = "";
+				}
+
+				$('.list input[name=pageNum]').attr("value", ($(this).attr("href")))
+				$('.list input[name=keyword]').attr("value", keyWord);
+
+
+				$(".list").submit();
+			})
+
+
 			$(".register").on("click", function(e) {
 
 				$(location).attr("href", "/board/register");
@@ -117,9 +142,9 @@
 			$(".title").on("click", function(e) {
 				e.preventDefault();
 
-				$('input[name=bno]').attr("value", ($(this).attr("href")))
+				$('.post input[name=bno]').attr("value", ($(this).attr("href")))
 
-				$("form").submit();
+				$(".post").submit();
 			})
 
 		})

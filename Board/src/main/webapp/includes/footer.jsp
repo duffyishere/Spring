@@ -33,6 +33,21 @@
             responsive: true
         });
     }); */
+
+
+    $('.searchBtn').on('click', function (e){
+        e.preventDefault();
+
+        let searchInput = $(".searchInput").val()
+
+        if(searchInput == ""){
+            alert("Input your keyword. ");
+        }
+        else{
+        	$(".searchForm").submit();
+        }       
+
+    })
     </script>
 
 </body>

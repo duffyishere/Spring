@@ -36,7 +36,6 @@
                     </div>
                     <div style="margin-top: 40px">
                         <button type="submit" class="btn btn-success btn-lg modify">등록</button>
-                        <button type="button" class="btn btn-secondary btn-lg list">목록</button>
                     </div>
                 </form>
             </div>
@@ -54,11 +53,6 @@
 	</script>
 	
     <script>
-        $(".list").on("click", function (e) {
-
-            $(location).attr("href", "/board/list");
-        });
-
 
         $(".delete").on('click', function(e) {
         	let bno = <c:out value='${post.bno}'/>

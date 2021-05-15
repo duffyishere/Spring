@@ -29,7 +29,9 @@ public class BoardController {
 		PageDTO page = new PageDTO(cri, boardService.getTotal(cri));
 		
 		log.info("/list cri: "+cri);
-		log.info(page.getStartPage());
+		if(page.isPrev()) {
+			log.info("true");
+		}
 
 		model.addAttribute("post", boardService.getList(cri));
 		model.addAttribute("page", page);
