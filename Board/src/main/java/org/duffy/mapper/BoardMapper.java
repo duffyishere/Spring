@@ -20,4 +20,6 @@ public interface BoardMapper {
 	public int update(BoardVO board);
 	
 	public int delete(Long bno);
+	
+	public int getTotal(Criteria cri);
 }

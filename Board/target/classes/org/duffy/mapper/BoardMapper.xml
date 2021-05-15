@@ -3,7 +3,10 @@
 <mapper namespace="org.duffy.mapper.BoardMapper">
 
 <select id="getList" resultType="org.duffy.domain.BoardVO">
-select * from tbl_board order by bno desc limit #{amount}, 10
+select * from(
+    select * from tbl_board
+)tbl_board
+order by bno desc limit 10 offset #{amount}
 </select>
 
 <select id="read" resultType="org.duffy.domain.BoardVO">
@@ -24,5 +27,9 @@ update tbl_board set db_board.tbl_board.title=#{title}, db_board.tbl_board.write
 <delete id="delete">
 delete from tbl_board where db_board.tbl_board.bno=#{bno};
 </delete>
+
+<select id="getTotal" resultType="int">
+SELECT COUNT(*) FROM tbl_board
+</select>
 
 </mapper>
