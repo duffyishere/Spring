@@ -41,7 +41,7 @@
         let searchInput = $(".searchInput").val()
 
         if(searchInput == ""){
-            alert("Input your keyword. ");
+            alert("Please insert search keywords! ");
         }
         else{
         	$(".searchForm").submit();
