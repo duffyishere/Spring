@@ -9,7 +9,7 @@ public class ReplyVO {
 	private Long rno;
 	private Long bno;
 
-	private String replyer;
+	private String replier;
 	private String reply;
 	
 	private Date replyDate;

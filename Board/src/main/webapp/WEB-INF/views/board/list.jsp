@@ -70,7 +70,6 @@
 			</form>
 			<form class="list" action="/board/list">
 				<input type="hidden" name="pageNum" value=""/>
-				<input type="hidden" name="keyword" value="">
 			</form>
 		</div>
 	</div>
@@ -101,6 +100,9 @@
 		
 	</script>
 
+	<%@ include file="/includes/footer.jsp"%>
+
+
 	<script type="text/javascript">
 		function showModal(result) {
 			if (typeof result != "undefined") {
@@ -122,13 +124,16 @@
 
 				let keyWord = "${page.cri.keyword}";
 
-				if(keyWord == '%'){
-					keyWord = "";
+				$('.list input[name=pageNum]').attr("value", ($(this).attr("href")))
+
+
+				if(keyWord != ""){
+					console.log("--------------");
+					$('.list').append('<input type="hidden" name="keyword" value='+keyWord+' />');
+					// $('.list input[name=keyword]').attr("value", keyWord);
 				}
 
-				$('.list input[name=pageNum]').attr("value", ($(this).attr("href")))
-				$('.list input[name=keyword]').attr("value", keyWord);
-
+				console.log(keyWord);
 
 				$(".list").submit();
 			})
@@ -142,12 +147,13 @@
 			$(".title").on("click", function(e) {
 				e.preventDefault();
 
-				$('.post input[name=bno]').attr("value", ($(this).attr("href")))
+				let bno = ($(this).attr("href"));
 
-				$(".post").submit();
+				console.log(bno)
+
+				$(location).attr("href", "/board/post/"+bno);
 			})
 
 		})
 	</script>
 
-	<%@ include file="/includes/footer.jsp"%>
