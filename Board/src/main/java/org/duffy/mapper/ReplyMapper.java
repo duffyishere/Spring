@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.duffy.domain.ReplyVO;
+import org.springframework.stereotype.Repository;
 
-@Mapper
+@Repository
 public interface ReplyMapper {
 
 	public List<ReplyVO> getList(Long bno);
 	public ReplyVO read(Long rno);
 	public int insert(ReplyVO reply);
 	public int delete(Long rno);
-	public int modify(ReplyVO reply);
+	public int update(ReplyVO reply);
 }

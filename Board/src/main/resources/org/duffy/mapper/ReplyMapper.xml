@@ -2,12 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.duffy.mapper.ReplyMapper">
 
+<select id="getList" resultType="org.duffy.domain.ReplyVO">
+select * from tbl_reply where bno = #{bno}
+</select>
+
 <insert id="insert">
 insert into tbl_reply(db_board.tbl_reply.bno, db_board.tbl_reply.replier, db_board.tbl_reply.reply) values(#{bno}, #{replier}, #{reply})
 </insert>
 
 <select id="read" resultType="org.duffy.domain.ReplyVO">
-select * from tbl_reply where bno=#{bno}
+select * from tbl_reply where rno = #{rno}
 </select>
+
+<delete id="delete">
+delete from tbl_reply where db_board.tbl_reply.rno = #{rno}
+</delete>
+
+<update id="update">
+
+</update>
 
 </mapper>

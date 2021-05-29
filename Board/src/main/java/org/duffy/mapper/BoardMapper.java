@@ -7,7 +7,6 @@ import org.duffy.domain.BoardVO;
 import org.duffy.domain.Criteria;
 import org.springframework.stereotype.Repository;
 
-@Mapper
 @Repository
 public interface BoardMapper {
 
