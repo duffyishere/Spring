@@ -20,15 +20,15 @@ public class CommonController {
 	}
 	
 	@GetMapping("/customLogin")
-	public void loginPage(String err, String logout, Model model) {
+	public void loginInput(String error, String logout, Model model) {
 	
 		log.info("custom login page");
-		log.info("err: "+err);
+		log.info("err: "+error);
 		log.info("logout: "+logout);
 		
-		if(err!=null)
-			model.addAttribute("error", "Login error please check your id or password.");
+		if(error!=null)
+			model.addAttribute("error", "Please check your id or password.");
 		if(logout!=null)
-			model.addAttribute("logout", "Logout");
+			model.addAttribute("logout", "Logout!");
 	}
 }
