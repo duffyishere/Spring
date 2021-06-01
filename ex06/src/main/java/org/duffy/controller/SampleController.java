@@ -18,13 +18,13 @@ public class SampleController {
 		log.info("do all,,,,,,");
 	}
 	
-	@GetMapping("/doUser")
+	@GetMapping("/member")
 	public void user() {
 		
 		log.info("do user,,,,,,");
 	}
 
-	@GetMapping("/doAdmin")
+	@GetMapping("/admin")
 	public void admin() {
 		
 		log.info("do admin,,,,,,");
