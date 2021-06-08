@@ -5,4 +5,12 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
+		
+	<!-- dataSource 설정, spring-jdbc 모듈 사용, spring 에서 jdbc 를 통해 mysql 에 접속할 수 있게 함 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property> 
+    	<property name="url" value="jdbc:mysql://localhost/db_board?useSSL=false"></property>
+    	<property name="username" value="root"></property>
+    	<property name="password" value="s2717244"></property>
+	</bean>
 </beans>
