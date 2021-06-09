@@ -7,12 +7,14 @@
 
 	<bean id="customAccessDenied"
 		class="org.duffy.security.CustomAccessDeniedHandler"></bean>
-	<bean id="customLoginSuccess" class="org.duffy.security.CustomLoginSuccessHandler"></bean>
+	<bean id="customLoginSuccess" 
+		class="org.duffy.security.CustomLoginSuccessHandler"></bean>
+	<bean id="bycryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
 	<security:http>
 
-		<security:intercept-url pattern="/sample/all"
-			access="permitAll" />
+		<security:intercept-url pattern="/sample/all" access="permitAll" />
 
 		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
 
@@ -28,16 +30,16 @@
 	</security:http>
 
 	<security:authentication-manager>
-
 		<security:authentication-provider>
-			<!-- <security:user-service>
-				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER" />
-				<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER, ROLE_ADMIN" />
-			</security:user-service> -->
 			
-			<security:jdbc-user-service data-source-ref="dataSource"/>
+			<security:jdbc-user-service 
+			data-source-ref="dataSource"
+			users-by-username-query="select userid username, userpw password, enable from tbl_member where userid = ?"
+			authorities-by-username-query="select userid username, auth authority from tbl_member_auth where userid = ?"/>
+			
+			<security:password-encoder ref="bycryptPasswordEncoder"/>
+			
 		</security:authentication-provider>
-
 	</security:authentication-manager>
 
 </beans>
