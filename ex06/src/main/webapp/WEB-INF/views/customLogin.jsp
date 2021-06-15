@@ -15,6 +15,7 @@
 	<form action="/login" method="post">
 		<input type='text' name="username"><br />
 		<input type='password' name="password"/><br />
+		<input type='checkbox' name="remember-me">Remember Me<br />
 		<input type='submit'>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
