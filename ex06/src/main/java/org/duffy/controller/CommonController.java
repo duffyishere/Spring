@@ -23,13 +23,18 @@ public class CommonController {
 	public void loginInput(String error, String logout, Model model) {
 	
 		log.info("custom login page");
-		log.info("err: "+error);
-		log.info("logout: "+logout);
 		
-		if(error!=null)
+		if(error!=null) {
 			model.addAttribute("error", "Please check your id or password.");
-		if(logout!=null)
-			model.addAttribute("logout", "Logout!");
+			log.info("error : "+error);
+		}
+		else 
+			log.info("Login Success!!");
+		if(logout!=null) {
+			model.addAttribute("logout", "Logout");
+			log.info("Logout!");
+		}
+			
 	}
 	
 	@GetMapping("customLogout")

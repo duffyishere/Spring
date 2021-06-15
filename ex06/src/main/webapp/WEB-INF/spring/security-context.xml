@@ -11,6 +11,8 @@
 		class="org.duffy.security.CustomLoginSuccessHandler"></bean>
 	<bean id="bycryptPasswordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+	<bean id="customUserDetailsService"
+		class="org.duffy.security.CustomUserDetailsService"></bean>
 
 	<security:http>
 
@@ -30,13 +32,17 @@
 	</security:http>
 
 	<security:authentication-manager>
-		<security:authentication-provider>
+
+	
+		<security:authentication-provider 
+			user-service-ref="customUserDetailsService">
 			
-			<security:jdbc-user-service 
+			<!-- <security:jdbc-user-service 
 			data-source-ref="dataSource"
 			users-by-username-query="select userid username, userpw password, enable from tbl_member where userid = ?"
 			authorities-by-username-query="select userid username, auth authority from tbl_member_auth where userid = ?"/>
-			
+			 -->
+			 
 			<security:password-encoder ref="bycryptPasswordEncoder"/>
 			
 		</security:authentication-provider>
