@@ -30,9 +30,9 @@
 		
 		<security:logout logout-url="/customLogout" invalidate-session="true"/>
 
-		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
-		
 		<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me, JESSION_ID"/>
+		
+		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604000"/>
 		
 	</security:http>
 
